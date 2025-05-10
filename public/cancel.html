@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Railway Ticket Booking</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .navbar {
+            background-color: #087df1;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+        }
+        .navbar-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #ffffff;
+        }
+        .nav-link i {
+            margin-right: 0.5rem;
+        }
+
+    .footer {
+      background-color: #555;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .train-images {
+      margin-top: 20px;
+    }
+
+    .train-images img {
+      width: 100%;
+      height: 90%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-custom">
+    <a class="navbar-brand" href="#" style="color:#ffffff"><i class="fa fa-fw fa-home"></i> Railway Reservation System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html"><i class="fa fa-fw fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html"><i class="fa fa-fw fa-user"></i> Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br><br>
+<br><br>
+
+<div class="container">
+  <h2 style="text-align:center">Railway Ticket Cancellation</h2>
+  
+
+  <form id="cancelForm">
+    <div class="form-group">
+      <label for="cancelPnr">PNR Number:</label>
+      <input type="text" class="form-control" id="cancelPnr" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Cancel Ticket</button>
+  </form>
+  <div id="cancelConfirmation" style="display:none;">
+    <br>
+    <h3>Cancellation Confirmation</h3>
+    <p id="cancelMessage"></p>
+  </div>
+</div>
+
+<div class="train-images row">
+  <div class="col-md-4">
+      <img src="https://images.unsplash.com/photo-1442570468985-f63ed5de9086?q=80&w=1520&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Train 1">
+  </div>
+  <div class="col-md-4">
+      <img src="https://plus.unsplash.com/premium_photo-1681822433362-88cc94abde80?dpr=1&w=306&auto=format&fit=crop&q=60&crop=entropy&cs=tinysrgb&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTF8fHRyYWlufGVufDB8MHx8fDE3MTc2NDM0ODh8MQ&ixlib=rb-4.0.3" alt="Train 2">
+  </div>
+  <div class="col-md-4">
+      <img src="https://media.istockphoto.com/id/1266917585/photo/mumbai-india-due-to-overcrowding-people-travel-in-open-doors-mumbai-suburban-railway-known-as.jpg?s=1024x1024&w=is&k=20&c=rl5YVXZD-fmU-TV9MM92WvzumZXfRGGAvRCffXpT6bs=" alt="Train 3">
+  </div>
+</div>
+</div>
+
+<footer class="footer">
+<div class="container">
+  <p>&copy; 2024 Railway Reservation System</p>
+</div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  
+
+  $('#cancelForm').submit(function(event) {
+    event.preventDefault();
+    const cancelData = {
+      pnrNumber: $('#cancelPnr').val()
+    };
+
+    $.ajax({
+      url: 'http://localhost:3000/api/cancelTicket',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(cancelData),
+      success: function(response) {
+        $('#cancelMessage').text(response.message);
+        $('#cancelConfirmation').show();
+      },
+      error: function(error) {
+        $('#cancelMessage').text(error.responseJSON.message);
+        $('#cancelConfirmation').show();
+      }
+    });
+  });
+
+</script>
+</body>
+</html>

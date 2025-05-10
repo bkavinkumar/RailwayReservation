@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us - Railway Reservation System</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url('train55.jpg');
+        background-color: rgba(240, 248, 255, 0.548);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+      }
+
+      .navbar-custom {
+        background-color: #555;
+        border-color: #f8f9fa;
+      }
+
+      .navbar-custom .nav-link {
+        color: white;
+      }
+
+      .navbar-custom .nav-link:hover {
+        background-color: #000;
+      }
+
+      .navbar-custom .navbar-brand {
+        color: #ffffff;
+      }
+
+      .footer {
+        background-color: #717274;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .contact-form {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 10px;
+      }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-custom">
+        <a class="navbar-brand" href="#"><i class="fa fa-fw fa-home"></i> Railway Reservation System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html"><i class="fa fa-fw fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="fa fa-fw fa-user"></i> Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1 class="mt-5" style="text-align:center;color: #ffffff;">Contact Us</h1>
+        <p style="text-align:center;color:  #ffffff;">If you have any questions, feel free to reach out to us using the form below.</p>
+        
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" class="form-control" id="subject" placeholder="Enter subject">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p style="color: #f8f9fa;">&copy; 2024 Railway Reservation System</p>
+        </div>
+    </footer>
+
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+  
+          const contactDetails = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+          };
+  
+          fetch('http://localhost:3000/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactDetails)
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (!data.success) {
+              alert('Contact details submitted successfully.');
+            } else {
+              alert('There was an error submitting111 your contact details.');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error submitting11 your contact details.');
+          });
+        });
+      </script>
+</body>
+</html>

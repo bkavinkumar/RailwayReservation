@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Railway Ticket Booking</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    
+
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #087df1;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+        }
+        .navbar-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #ffffff;
+        }
+        .nav-link i {
+            margin-right: 0.5rem;
+        }
+
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-custom">
+        <a class="navbar-brand" href="#" style="color:#f8f9fa"><i class="fa fa-fw fa-home"></i> Railway Reservation System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html"><i class="fa fa-fw fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="fa fa-fw fa-user"></i> Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  <br><br>
+  <br><br>
+
+<div class="container">
+  <h2>Railway Ticket Booking</h2>
+  <form id="bookingForm">
+    <div class="form-group">
+      <label for="origin">Origin:</label>
+      <select class="form-control" id="origin" required>
+        <option value="">Select Origin</option>
+        <option value="cA">Tirupur</option>
+        <option value="cB">Erode</option>
+        <option value="cc">Coimbatore</option>
+
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination:</label>
+      <select class="form-control" id="destination" required>
+        <option value="">Select Destination</option>
+        <option value="cA">Tirupur</option>
+        <option value="cB">Erode</option>
+        <option value="cc">Coimbatore</option>
+
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="train">Train:</label>
+      <select class="form-control" id="train" required>
+        <option value="">Select Train</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="seatType">Seat Type:</label>
+      <select class="form-control" id="seatType" required>
+        <option value="">Select Seat Type</option>
+        <option value="sleeper">Sleeper</option>
+        <option value="ac">AC</option>
+        <option value="reserv">Reservation</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="numSeats">Number of Seats:</label>
+      <input type="number" class="form-control" id="numSeats" required min="1">
+    </div>
+    <div class="form-group">
+      <label for="totalCost">Total Cost:</label>
+      <input type="text" class="form-control" id="totalCost" readonly>
+    </div>
+    <button type="submit" class="btn btn-primary">Book Ticket</button>
+  </form>
+  <div id="confirmation" style="display:none;">
+    <h3>Booking Confirmation</h3>
+    <p id="payId"></p>
+    <p id="pnrNumber"></p>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+const trainData = {
+  "cA_cB": [
+    { name: "Erode Express ", id: "train1" },
+    { name: "Covai Express ", id: "train2" }
+  ],
+  "cB_cA": [
+    { name: "Tirupur Express ", id: "train3" },
+    { name: "Covai Express ", id: "train4" }
+  ],
+  "cc_cA": [
+    { name: "Tirupur Express ", id: "train3" },
+    { name: "Covai Express ", id: "train4" }
+  ],
+  "cc_cB": [
+    { name: "Salem Express ", id: "train3" },
+    { name: "Nammakal Express ", id: "train4" }
+  ],
+  "cB_cc": [
+    { name: "chennai Express ", id: "train3" },
+    { name: "delhi Express ", id: "train4" }
+  ],
+  "cA_cc": [
+    { name: "kochi Express ", id: "train3" },
+    { name: "theni Express ", id: "train4" }
+  ],
+  
+};
+
+const seatPrices = {
+  reserv:250,
+  sleeper: 500,
+  ac: 1000
+};
+
+$(document).ready(function() {
+  $('#origin, #destination').change(function() {
+    const origin = $('#origin').val();
+    const destination = $('#destination').val();
+    const trainKey = `${origin}_${destination}`;
+    const trains = trainData[trainKey] || [];
+    
+    $('#train').empty().append('<option value="">Select Train</option>');
+    trains.forEach(train => {
+      $('#train').append(`<option value="${train.name}">${train.name}</option>`);
+    });
+  });
+
+  $('#numSeats, #seatType').change(function() {
+    const seatType = $('#seatType').val();
+    const numSeats = parseInt($('#numSeats').val(), 10) || 0;
+    const costPerSeat = seatPrices[seatType] || 0;
+    const totalCost = numSeats * costPerSeat;
+    $('#totalCost').val(totalCost);
+  });
+
+  $('#bookingForm').submit(function(event) {
+    event.preventDefault();
+    const payId = 'PAY' + Math.floor(Math.random() * 1000000);
+    const pnrNumber = 'PNR' + Math.floor(Math.random() * 1000000);
+
+    const bookingData = {
+      origin: $('#origin').val(),
+      destination: $('#destination').val(),
+      train: $('#train').val(),
+      seatType: $('#seatType').val(),
+      numSeats: $('#numSeats').val(),
+      totalCost: $('#totalCost').val(),
+      payId: payId,
+      pnrNumber: pnrNumber
+    };
+    
+    $.ajax({
+      url: 'http://localhost:3000/api/bookTicket',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(bookingData),
+      success: function(response) {
+        $('#payId').text(`Payment ID: ${response.payId}`);
+        $('#pnrNumber').text(`PNR Number: ${response.pnrNumber}`);
+        $('#confirmation').show();
+      },
+      error: function(error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

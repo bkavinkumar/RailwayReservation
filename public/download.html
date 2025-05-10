@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Railway Reservation System - Report</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('train55.jpg');
+        }
+        .container {
+            margin-top: 50px;
+            background-color: rgba(240, 248, 255, 0.548);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #downloadReport {
+            display: block;
+            margin: 0 auto;
+        }
+        .navbar {
+            background-color: #087df1;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+        }
+        .navbar-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #ffffff;
+        }
+        .nav-link i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <br><br>
+    <nav class="navbar navbar-expand-md navbar-custom">
+        <a class="navbar-brand" href="#" style="color:#f8f9fa"><i class="fa fa-fw fa-home"></i> Railway Reservation System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html"><i class="fa fa-fw fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="fa fa-fw fa-user"></i> Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container"><br>
+        <h1 class="display-4">Railway Reservation System</h1>
+        <h2 class="h4">Report for Booking Details</h2><br>
+        <button id="downloadReport" class="btn btn-primary">Download Report</button>
+       
+
+    <br><br></div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scriptd.js"></script>
+</body>
+</html>
