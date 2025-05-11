@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: railway-reservation-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: railway-reservation
+  template:
+    metadata:
+      labels:
+        app: railway-reservation
+    spec:
+      containers:
+      - name: railway-reservation
+        image: kavinkumar7/railway_reservation:latest   # Your Docker image from Docker Hub
+        ports:
+        - containerPort: 4000    # Change this to match your app's port
