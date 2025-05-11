@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: railway-reservation-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: railway-reservation
+  ports:
+    - port: 80
+      targetPort: 4000
