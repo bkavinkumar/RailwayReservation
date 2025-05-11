@@ -11,13 +11,13 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/mydatabase1', {
+mongoose.connect('mongodb+srv://kavinkumar:MzCNzvyvfwB4vs6w@railwaydevops.uuwjlpj.mongodb.net/', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
-    console.log("Connected to MongoDB");
+    console.log("Connected to MongoDBAtlas ");
 }).catch((err) => {
-    console.error("Error connecting to MongoDB", err);
+    console.error("Error connecting to MongoDB Atlas", err);
 });
 
 const userSchema = new mongoose.Schema({
