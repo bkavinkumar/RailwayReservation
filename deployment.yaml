@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: railway-reservation
-        image: kavinkumar7/railway_reservation:latest   # Your Docker image from Docker Hub
+        image: kavinkumar7/railway-reservation-app   # Your Docker image from Docker Hub
         ports:
         - containerPort: 4000    # Change this to match your app's port
