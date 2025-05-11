@@ -11,7 +11,7 @@ app.use(cors()); // Use cors
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from the public directory
 
-mongoose.connect('mongodb://localhost/railway_reservation', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://kavinkumar:MzCNzvyvfwB4vs6w@railwaydevops.uuwjlpj.mongodb.net/?retryWrites=true&w=majority&appName=railwaydevops', { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 const foodOrderSchema = new mongoose.Schema({
