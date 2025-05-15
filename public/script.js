@@ -4,7 +4,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
     const trainNumber = document.getElementById('trainNumber').value;
     const paymentAmount = document.getElementById('paymentAmount').value;
 
-    fetch('http://localhost:3000/bookTicket', { // Ensure the URL is correct
+    fetch('http://localhost:4000/bookTicket', { // Ensure the URL is correct
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, trainNumber, paymentAmount })
