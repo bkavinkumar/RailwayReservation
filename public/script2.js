@@ -5,7 +5,7 @@ document.getElementById('foodServiceForm').addEventListener('submit', function(e
     const quantity = document.getElementById('quantity').value;
     const deliveryTime = document.getElementById('deliveryTime').value;
 
-    fetch('http://localhost:3000/orderFood', { // Ensure the URL is correct
+    fetch('http://localhost:4000/orderFood', { // Ensure the URL is correct
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pnr, foodItem, quantity, deliveryTime })
