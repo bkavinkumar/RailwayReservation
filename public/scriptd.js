@@ -1,5 +1,5 @@
 document.getElementById('downloadReport').addEventListener('click', function() {
-    fetch('http://localhost:3000/downloadReport', { // Ensure the URL is correct
+    fetch('http://localhost:4000/downloadReport', { // Ensure the URL is correct
         method: 'GET',
     })
     .then(response => response.blob())
