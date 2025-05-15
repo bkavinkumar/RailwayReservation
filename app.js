@@ -1,3 +1,16 @@
+/////////////////////////////////// IT IS NO NEED TO USE//////////////////
+
+///RUN ONLY NODE SERVER.JS///
+
+
+
+
+
+
+
+
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
