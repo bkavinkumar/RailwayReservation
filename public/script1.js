@@ -2,7 +2,7 @@ document.getElementById('cancellationForm').addEventListener('submit', function(
     e.preventDefault();
     const pnr = document.getElementById('pnr').value;
 
-    fetch('http://localhost:3000/cancelTicket', { // Ensure the URL is correct
+    fetch('http://localhost:4000/cancelTicket', { // Ensure the URL is correct
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pnr })
