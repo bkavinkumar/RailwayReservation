@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://kavinkumar:MzCNzvyvfwB4vs6w@railwaydevops.uuwjlpj.mongodb.net/?retryWrites=true&w=majority&appName=railwaydevops', {
+mongoose.connect('mongoose.connect("mongodb://kavinkumar:MzCNzvyvfwB4vs6w@railwaydevops.uuwjlpj.mongodb.net:27017/railwaydb?retryWrites=true&w=majority&directConnection=true");
+', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
