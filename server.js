@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB connection
-mongoose.connect("mongodb+srv://kavinkumar:MzCNzvyvfwB4vs6w@railwaydevops.uuwjlpj.mongodb.net/?retryWrites=true&w=majority&appName=railwaydevops")
+mongoose.connect("mongodb://kavinkumar:MzCNzvyvfwB4vs6w@ac-xyz-shard-00-00.mongodb.net:27017,ac-xyz-shard-00-01.mongodb.net:27017,ac-xyz-shard-00-02.mongodb.net:27017/myDB?ssl=true&replicaSet=atlas-xxxx-shard-0&authSource=admin
+")
 ");
 ', {
 }).then(() => {
